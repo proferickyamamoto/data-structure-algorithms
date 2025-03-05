@@ -64,7 +64,9 @@ xcode-select --install
 Para melhorar a experiência de programação em C, instale estas extensões no VS Code:
 
 🔹 C/C++ (by Microsoft) – Adiciona suporte a sintaxe e IntelliSense.
+
 🔹 Code Runner – Permite executar códigos com um clique.
+
 🔹 Better C++ Syntax – Melhora a coloração do código.
 
 📌 Para instalar extensões:
