@@ -11,7 +11,8 @@ Este repositório contém o material do curso **Estruturas de Dados e Algoritmos
 ## 📌 Configuração do VS Code para Programação em C
 ### 1️⃣ Instalar o VS Code
 Se ainda não tem o Visual Studio Code, faça o download e instale a versão mais recente:
-🔗 Baixar VS Code
+
+ [Baixar VS Code](https://code.visualstudio.com/)
 
 ---
 ### 2️⃣ Instalar um Compilador C (GCC)
