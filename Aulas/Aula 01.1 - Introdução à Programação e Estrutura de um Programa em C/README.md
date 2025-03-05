@@ -1,4 +1,4 @@
-# 🚀 Semana 1: Introdução à Programação e Estrutura de um Programa em C
+# 🚀 Aula 01.1: Introdução à Programação e Estrutura de um Programa em C
 
 ## 📌 Objetivos da Aula
 Nesta aula, vamos aprender os conceitos fundamentais de programação e como escrever nosso primeiro programa em C.
