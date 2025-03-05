@@ -61,7 +61,9 @@ int main() {
 📌 Explicação:
 
 #include <stdio.h> → Biblioteca que permite usar printf().
+
 int main() → Função principal do programa.
+
 printf("Olá, mundo!\n"); → Exibe texto na tela.
 
 ### 📌 4. Como Compilar e Executar um Código em C?
