@@ -4,6 +4,7 @@
 Nesta aula, vamos aprender os conceitos fundamentais de programação e como escrever nosso primeiro programa em C.
 
 ### ✅ O que você aprenderá:
+
 ✔ O que é programação e por que aprender C.  
 ✔ Como funciona um programa de computador.  
 ✔ Estrutura básica de um programa em C.  
@@ -19,6 +20,7 @@ Nesta aula, vamos aprender os conceitos fundamentais de programação e como esc
 - Linguagens de programação permitem que possamos comunicar **nossas ideias** ao computador.
 
 **Exemplo de Algoritmo – Fazer um Café**:
+
 1️⃣ Ferva a água
 2️⃣ Adicione o café ao filtro
 3️⃣ Despeje a água quente
@@ -29,11 +31,13 @@ Nesta aula, vamos aprender os conceitos fundamentais de programação e como esc
 ---
 
 ### 📌 2. Por que aprender C?
+
 🔹 **Linguagem eficiente e rápida** → Base para sistemas operacionais, jogos e software embarcado.  
 🔹 **Alta performance** → Ideal para otimização de código.  
 🔹 **Base para outras linguagens** → Java, Python e C++ derivam do C.  
 
 **Exemplos de uso**:
+
 ✅ **Linux e Windows** → Sistemas operacionais escritos em C.  
 ✅ **Jogos como DOOM** → Utilizam C para alto desempenho.  
 ✅ **Microcontroladores e Arduino** → C é amplamente usado.  
