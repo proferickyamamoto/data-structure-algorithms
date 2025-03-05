@@ -57,7 +57,7 @@ int main() {
     printf("Olá, mundo!\n");  // Exibe uma mensagem na tela
     return 0; // Indica que o programa terminou com sucesso
 }
-
+```
 📌 Explicação:
 
 #include <stdio.h> → Biblioteca que permite usar printf().
