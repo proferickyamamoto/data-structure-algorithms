@@ -105,7 +105,11 @@ gcc programa.c -o programa
 
 ### 📚 Recursos Adicionais
 📖 Livro: "The C Programming Language" – Brian Kernighan e Dennis Ritchie.
+
 🎥 Vídeo: Playlist de Introdução à Linguagem C.
+
 🌎 Documentação: C Programming Reference.
+
 🔥 Próxima Aula: Variáveis, Tipos de Dados e Operadores
+
 📌 Na próxima semana, aprenderemos como armazenar e manipular dados com variáveis e operadores matemáticos!
