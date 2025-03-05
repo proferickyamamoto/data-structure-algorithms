@@ -22,8 +22,11 @@ Nesta aula, vamos aprender os conceitos fundamentais de programação e como esc
 **Exemplo de Algoritmo – Fazer um Café**:
 
 1️⃣ Ferva a água
+
 2️⃣ Adicione o café ao filtro
+
 3️⃣ Despeje a água quente
+
 4️⃣ Sirva o café
 
 📌 **O computador segue regras exatas, como nos algoritmos!**
