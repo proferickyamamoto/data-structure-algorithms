@@ -19,7 +19,8 @@ O VS Code não compila C por conta própria, então precisamos instalar um compi
 
 📌 Windows (Instalar o MinGW-w64)
 1. Baixe o MinGW-w64:
-🔗 MinGW-w64 Compiler
+
+[🔗](https://winlibs.com/) MinGW-w64 Compiler
 
 2. Instale a versão GCC (x86_64-posix-seh).
 
