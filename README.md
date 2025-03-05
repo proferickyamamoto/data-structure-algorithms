@@ -74,6 +74,7 @@ Para melhorar a experiência de programação em C, instale estas extensões no 
 No VS Code, clique em Extensões (Ctrl + Shift + X).
 Pesquise o nome da extensão e clique em Instalar.
 
+---
 ### 4️⃣ Criar um Projeto em C no VS Code
 Abra o VS Code e crie uma pasta para seu projeto (C:\Projetos_C).
 Crie um novo arquivo e nomeie como programa.c.
@@ -86,6 +87,7 @@ int main() {
     return 0;
 }
 ```
+---
 ### 5️⃣ Configurar o Terminal para Compilar e Executar
 📌 Para compilar e rodar o código no terminal integrado do VS Code:
 
@@ -99,16 +101,16 @@ Execute o programa com:
 ./programa   # Linux/macOS
 programa.exe # Windows
 ```
+---
 ### 6️⃣ Configurar Atalho para Compilar e Executar Automaticamente
 
----
+
 ### 📌 Para rodar o código com apenas um clique:
 
 Vá para "Arquivo" → "Preferências" → "Configurações".
 Pesquise por "Code Runner" e ative a opção "Run in Terminal".
 Agora, basta pressionar Ctrl + Alt + N para executar o código.
 
----
 ### 📌 Caso precise configurar manualmente:
 
 Vá até "Executar" → "Adicionar Configuração".
@@ -138,8 +140,6 @@ Selecione "C/C++: Executar o arquivo ativo" e edite o .vscode/tasks.json:
 }
 ```
 Agora, sempre que quiser compilar e rodar, basta pressionar Ctrl + Shift + B! 🚀
-
----
 
 ### 🎯 Teste sua Configuração
 
