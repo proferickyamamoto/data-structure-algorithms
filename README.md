@@ -179,4 +179,4 @@ Agora seu VS Code está totalmente configurado para programação em C! 🚀
 
 Agora você pode começar a explorar e praticar a programação em C! 🏆
 
-💡 Dúvidas? Comente no repositório ou pergunte no grupo de estudos! 🎯
+💡 Dúvidas? Comente no repositório ou me pergunte, nunca deixe para depois! 🎯
