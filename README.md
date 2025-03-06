@@ -8,7 +8,10 @@ Este repositório contém o material do curso **Estruturas de Dados e Algoritmos
 - [Exercícios](#exercícios)
 - [Projetos](#projetos)
 
-## 📌 Configuração do VS Code para Programação em C
+## 📌 Online: Programação em C
+ [Replit](https://replit.com/new) é uma plataforma online para desenvolvedores, independente de uma máquina local e suas configurações.
+
+## 📌 Local: Configuração do VS Code para Programação em C
 ### 1️⃣ Instalar o VS Code
 Se ainda não tem o Visual Studio Code, faça o download e instale a versão mais recente:
 
