@@ -130,7 +130,25 @@ Solicite a idade de duas pessoas e exiba:
 Peça um número ao usuário e exiba se ele é **par ou ímpar**.
 
 ---
+## 🎯 Desafio para Casa
 
+### 📌 Calculadora de IMC (Índice de Massa Corporal)
+
+Crie um programa que solicite ao usuário seu peso e altura e calcule seu IMC, usando a fórmula:
+
+IMC = peso / (altura * altura)
+
+Após calcular o IMC, exiba a classificação com base nos seguintes critérios:
+
+Abaixo de 18.5 → Abaixo do peso
+
+Entre 18.5 e 24.9 → Peso normal
+
+Entre 25 e 29.9 → Sobrepeso
+
+30 ou mais → Obesidade
+
+---
 ## 📚 Recursos Adicionais
 - 📖 **Livro:** "The C Programming Language" – Brian Kernighan e Dennis Ritchie.
 - 📹 **Vídeo:** [Playlist de C no YouTube](https://www.youtube.com/watch?v=3Xq4sPu6vKA).
