@@ -1,4 +1,4 @@
-# 🚀 Aula 02.1 - Variáveis, Tipos de Dados e Operadores em C
+# 🚀 Aula 02.1: Variáveis, Tipos de Dados e Operadores em C
 
 ## 📌 Objetivos da Aula
 Nesta semana, vamos aprender sobre **como armazenar e manipular dados** em C usando variáveis e operadores.
