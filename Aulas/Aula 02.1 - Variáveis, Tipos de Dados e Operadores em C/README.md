@@ -57,29 +57,60 @@ int main() {
 
 ---
 
-### 📌 3. Entrada e Saída de Dados
+### 📌 3. Especificadores de Formato no printf() e scanf()
 
-#### Funções principais:
-- **`printf()`** → Exibe texto na tela.
-- **`scanf()`** → Captura dados do usuário.
+Os **especificadores de formato** são usados para exibir e capturar valores corretamente.
 
-#### Exemplo de entrada e saída:
+| Especificador | Tipo de Dado | Exemplo |
+|--------------|--------------|---------------|
+| `%d`, `%i`   | `int` (inteiros) | `printf("%d", 42);` |
+| `%f`         | `float` (decimais) | `printf("%.2f", 3.14);` |
+| `%lf`        | `double` (mais precisão) | `printf("%lf", 3.1415);` |
+| `%c`         | `char` (caracteres) | `printf("%c", 'A');` |
+| `%s`         | `char[]` (strings) | `printf("%s", "Texto");` |
+
+#### 📌 Exemplo – Uso em printf()
+
+```c
+#include <stdio.h>
+
+int main() {
+    int idade = 25;
+    float altura = 1.75;
+    char inicial = 'M';
+    char nome[] = "João";
+
+    printf("Idade: %d anos\n", idade);
+    printf("Altura: %.2f metros\n", altura);
+    printf("Inicial do nome: %c\n", inicial);
+    printf("Nome: %s\n", nome);
+    return 0;
+}
+```
+
+#### 📌 Exemplo – Uso em scanf()
 ```c
 #include <stdio.h>
 
 int main() {
     int idade;
     float peso;
+    char nome[50];
 
+    printf("Digite seu nome: ");
+    scanf("%s", nome);
     printf("Digite sua idade: ");
     scanf("%d", &idade);
-
     printf("Digite seu peso: ");
     scanf("%f", &peso);
 
-    printf("Você tem %d anos e pesa %.1f kg.\n", idade, peso);
+    printf("Nome: %s, Idade: %d, Peso: %.2f kg\n", nome, idade, peso);
     return 0;
 }
+```
+#### ⚠ Atenção: O scanf("%s", nome); não captura espaços em branco. Para ler strings com espaços, use fgets().
+```c
+fgets(nome, 50, stdin);
 ```
 
 ---
@@ -109,6 +140,52 @@ int main() {
     return 0;
 }
 ```
+#### 🔋 4.2 Operadores Aritméticos - Divisão com `float`
+
+Quando realizamos uma **divisão em C**, devemos garantir que pelo menos um dos operandos seja `float`, caso contrário, a divisão pode resultar em um número inteiro.
+
+#### 📌 Exemplo – Divisão Correta entre `float`
+```c
+#include <stdio.h>
+
+int main() {
+    float num1 = 5.0, num2 = 2.0;
+    float resultado = num1 / num2;
+
+    printf("Resultado: %.2f\n", resultado); // Exibe 2.50
+    return 0;
+}
+```
+
+#### 📌 Problema – Divisão de `int` Retornando Valor Incorreto
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 5, b = 2;
+    float resultado = a / b; // Problema: resultado será 2, não 2.50
+
+    printf("Resultado incorreto: %.2f\n", resultado);
+    return 0;
+}
+```
+✅ **Solução:** Converter um dos operandos para `float`:
+```c
+float resultado = (float) a / b;
+```
+📌 **Exemplo Corrigido:**
+```c
+#include <stdio.h>
+
+int main() {
+    int a = 5, b = 2;
+    float resultado = (float) a / b;
+
+    printf("Resultado correto: %.2f\n", resultado); // Exibe 2.50
+    return 0;
+}
+```
+
 
 ---
 
