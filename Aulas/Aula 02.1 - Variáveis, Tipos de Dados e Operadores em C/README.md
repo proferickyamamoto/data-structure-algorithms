@@ -237,4 +237,7 @@ Entre 25 e 29.9 → Sobrepeso
 
 **💡 Dúvidas? Comente no repositório ou pergunte no grupo de estudos!** 🌟
 
-
+---
+📝 Autor: **Prof. Erick Toshio Yamamoto**
+📅 Data: 14/03/2025
+📌 Disciplina: Data Structure and Algorithms
