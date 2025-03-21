@@ -166,6 +166,66 @@ Explicação:
 
 ---
 
+## 📝 Exercícios para Desenvolver em Sala
+
+### 1️⃣ **Simulador de Notas Escolares**
+Crie um programa que:
+- Peça ao usuário sua nota.
+- Exiba a classificação conforme a tabela abaixo:
+  - **90 a 100** → Aprovado com excelência
+  - **70 a 89** → Aprovado
+  - **Menos de 70** → Reprovado
+
+### 2️⃣ **Contagem Progressiva e Regressiva**
+Crie um programa que:
+- Use um **loop `for`** para contar de **1 a 10**.
+- Depois, use um **loop `while`** para contar de **10 a 1**.
+
+### 3️⃣**Tabuada de um Número**
+Crie um programa que:
+- Peça um número ao usuário.
+- Exiba a tabuada de **1 a 10** desse número usando um **loop `for`**.
+
+### 4️⃣ **Calculadora Simples**
+- Peça dois números e uma operação (soma, subtração, multiplicação, divisão).
+- Use `switch` para realizar a operação.
+
+---
+
+## 🎯 Desafio para Casa
+
+### 📌 Jogo de Adivinhação
+Crie um programa que gere um número aleatório entre **1 e 10** e peça ao usuário para adivinhar:
+- Se o usuário acertar, exiba "Parabéns, você acertou!".
+- Se errar, informe "Tente novamente!" e continue pedindo até acertar.
+- Utilize `do-while` para repetir a entrada até que o usuário acerte.
+
+Dica: Use a biblioteca `<stdlib.h>` e a função `rand()` para gerar números aleatórios.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    srand(time(NULL)); // Inicializa o gerador de números aleatórios
+    int numeroSecreto = rand() % 10 + 1; // Número entre 1 e 10
+    int tentativa;
+
+    do {
+        printf("Adivinhe o número (1 a 10): ");
+        scanf("%d", &tentativa);
+
+        if (tentativa != numeroSecreto) {
+            printf("Errado! Tente novamente.\n");
+        }
+    } while (tentativa != numeroSecreto);
+
+    printf("Parabéns, você acertou!\n");
+    return 0;
+}
+```
+
+---
 ## 📚 Recursos Adicionais
 - 📖 **Livro:** "The C Programming Language" – Brian Kernighan e Dennis Ritchie.
 - 🎥 **Vídeo:** [Playlist de C no YouTube](https://www.youtube.com/watch?v=3Xq4sPu6vKA).
