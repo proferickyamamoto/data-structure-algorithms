@@ -113,3 +113,8 @@ gcc programa.c -o programa
 🔥 Próxima Aula: Variáveis, Tipos de Dados e Operadores
 
 📌 Na próxima semana, aprenderemos como armazenar e manipular dados com variáveis e operadores matemáticos!
+
+---
+📝 Autor: **Prof. Erick Toshio Yamamoto**
+📅 Data: 06/03/2025
+📌 Disciplina: Data Structure and Algorithms
