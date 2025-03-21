@@ -208,3 +208,7 @@ int main() {
 
 **💡 Dúvidas? Comente no repositório ou pergunte no grupo de estudos!** 🌟
 
+---
+📝 Autor: **Prof. Erick Toshio Yamamoto**
+📅 Data: 19/03/2025
+📌 Disciplina: Data Structure and Algorithms
