@@ -1,7 +1,5 @@
 # 🚀 Aula 03.1: Estruturas Condicionais e Laços de Repetição em C
 
-# 🚀 Semana 3: Estruturas Condicionais e Laços de Repetição em C
-
 ## 📌 Objetivos da Aula
 Nesta semana, vamos aprender sobre **estruturas de decisão** e **laços de repetição**, fundamentais para a construção de algoritmos dinâmicos e interativos.
 
