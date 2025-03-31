@@ -228,7 +228,7 @@ int main() {
 ---
 ## 📚 Recursos Adicionais
 - 📖 **Livro:** "The C Programming Language" – Brian Kernighan e Dennis Ritchie.
-- 🎥 **Vídeo:** [Playlist de C no YouTube](https://www.youtube.com/watch?v=3Xq4sPu6vKA).
+- 🎥 **Vídeo:** [Playlist de C no YouTube](https://www.youtube.com/playlist?list=PLqJK4Oyr5WSjjEQCKkX6oXFORZX7ro3DA).
 - 🌎 **Documentação:** [C Programming Reference](https://en.cppreference.com/w/).
 
 ---
