@@ -145,7 +145,7 @@ Desenvolva um programa em C com as seguintes funções:
 
 ## 📚 Recursos Adicionais
 - 📖 Livro: "The C Programming Language" – Kernighan e Ritchie
-- 🎥 Vídeo: [Funções em C - YouTube](https://www.youtube.com/watch?v=9YJ8nkrn-Tg)
+- 🎥 Vídeo: [Funções em C - YouTube]([https://www.youtube.com/watch?v=Ta1hL9L4Oaw&pp=ygUYRnVuw6fDtWVzIGVtIEMgLSBZb3VUdWJl])
 - 🌐 Documentação: [Funções em C - cppreference](https://en.cppreference.com/w/c/language/functions)
 
 ---
