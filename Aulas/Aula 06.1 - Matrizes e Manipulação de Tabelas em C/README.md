@@ -1,4 +1,4 @@
-# 🚀 Aula 06.1: Matrizes e Manipulação de Tabelas em C
+# 🚀 Semana 6: Matrizes e Manipulação de Tabelas em C
 
 ## 📌 Objetivos da Aula
 Nesta semana, vamos expandir o conceito de vetores e trabalhar com **matrizes** em C, que são estruturas bidimensionais muito utilizadas para representar tabelas, planilhas e dados tabulares em geral.
@@ -100,4 +100,19 @@ int main() {
 Aluno | Nota 1 | Nota 2 | Média
 ------|--------|--------|------
 1     |  7.5   |  8.0   | 7.75
-2     |
+2     |  6.0   |  5.5   | 5.75
+3     |  9.0   |  9.5   | 9.25
+```
+
+---
+
+## 📚 Recursos Adicionais
+- 📘 Livro: "Algoritmos em C" – Paulo Feofiloff
+- 🎥 Vídeo: [Matrizes em C - Curso em Vídeo]([https://www.youtube.com/watch?v=Xu1sZbnTntM](https://www.youtube.com/watch?v=OPa3tY4ne38&pp=ygUfTWF0cml6ZXMgZW0gQyAtIEN1cnNvIGVtIFbDrWRlbw%3D%3D))
+- 🌐 Documentação: [Matrizes em C - cppreference](https://en.cppreference.com/w/c/language/array)
+
+---
+
+## 🔥 Próxima Aula: Ponteiros e Endereçamento de Memória
+
+**💡 Dúvidas? Comente no repositório ou fale com o professor ou monitor!**
