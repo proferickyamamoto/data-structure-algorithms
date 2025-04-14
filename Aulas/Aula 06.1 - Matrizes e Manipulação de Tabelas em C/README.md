@@ -1,4 +1,4 @@
-# 🚀 Semana 6: Matrizes e Manipulação de Tabelas em C
+# 🚀 Aula 06.1: Matrizes e Manipulação de Tabelas em C
 
 ## 📌 Objetivos da Aula
 Nesta semana, vamos expandir o conceito de vetores e trabalhar com **matrizes** em C, que são estruturas bidimensionais muito utilizadas para representar tabelas, planilhas e dados tabulares em geral.
