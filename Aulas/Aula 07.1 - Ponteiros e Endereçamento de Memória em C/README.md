@@ -184,6 +184,5 @@ alterarValor(&jogador1);
 
 
 **🚀 Boa sorte! Divirta-se codando e domine os ponteiros!**
-## 🔥 Próxima Aula: Ponteiros e Funções – passagem por referência
 **💬 Dúvidas? Comente no repositório ou fale com o professor!**
 
