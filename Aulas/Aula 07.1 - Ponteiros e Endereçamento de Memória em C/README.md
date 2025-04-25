@@ -100,7 +100,90 @@ void somar(int *a, int *b) {
 
 ---
 
-## 🔥 Próxima Aula: Ponteiros e Funções – passagem por referência
+# 🎮 Projeto em Sala – Jogo da Troca: Ponteiros em Ação
 
-**💬 Dúvidas? Comente no repositório ou fale com o professor ou monitor!**
+## 🎯 Objetivo
+Desenvolver um jogo interativo que utilize **ponteiros** para manipular diretamente variáveis na memória. O foco é aplicar de forma prática e divertida os conceitos aprendidos na aula.
+
+---
+
+## 🧠 Habilidades Desenvolvidas
+- Declaração e uso de ponteiros (`int *ptr`)
+- Passagem de parâmetros por referência
+- Manipulação de valores e endereços de memória
+- Estrutura de controle com `switch` e `do-while`
+- Criação de um menu interativo
+
+---
+
+## 📝 Regras do Projeto
+Você deverá implementar um programa em C que simule um **jogo de troca de pontos entre dois jogadores**, utilizando funções que manipulam valores por meio de **ponteiros**.
+
+### 🧩 Funcionalidades obrigatórias:
+- Trocar valores entre jogadores
+- Somar os pontos
+- Exibir o vencedor
+- Alterar valor de um jogador manualmente
+- Exibir os endereços de memória dos jogadores
+- Sair do programa
+
+---
+
+## 🧭 Menu Interativo
+```
+--- JOGO DA TROCA: PONTEIROS EM AÇÃO ---
+1. Trocar pontos entre jogadores
+2. Somar os pontos
+3. Ver quem está vencendo
+4. Alterar valor de um jogador
+5. Mostrar endereços de memória
+6. Sair
+```
+
+---
+
+## 🛠️ Funções obrigatórias
+```c
+void exibirMenu();
+void trocar(int *a, int *b);
+void somar(int *a, int *b);
+void mostrarVencedor(int *a, int *b);
+void alterarValor(int *alvo);
+void mostrarEnderecos(int *a, int *b);
+```
+
+---
+
+## ✅ Exemplo de uso
+```c
+int jogador1 = 10, jogador2 = 20;
+trocar(&jogador1, &jogador2);
+somar(&jogador1, &jogador2);
+alterarValor(&jogador1);
+```
+
+---
+
+## 📎 Entrega
+- Envie o arquivo `.c` com o nome `jogo_troca_nome.c` no **Teams** até o final da aula.
+- O programa deve compilar e rodar corretamente.
+- Comente seu código para facilitar a leitura.
+
+---
+
+## 🧮 Avaliação
+| Critério                         | Pontos |
+|---------------------------------|--------|
+| Uso correto de ponteiros        | 3,0    |
+| Funções implementadas corretamente | 3,0 |
+| Menu interativo funcional       | 2,0    |
+| Organização e comentários       | 2,0    |
+| **Total**                       | **10** |
+
+---
+
+
+**🚀 Boa sorte! Divirta-se codando e domine os ponteiros!**
+## 🔥 Próxima Aula: Ponteiros e Funções – passagem por referência
+**💬 Dúvidas? Comente no repositório ou fale com o professor!**
 
