@@ -165,9 +165,10 @@ alterarValor(&jogador1);
 ---
 
 ## 📎 Entrega
-- Envie o arquivo `.c` com o nome `jogo_troca_nome.c` no **Teams** até o final da aula.
+- Envie o arquivo `.c` com o nome `jogo_troca_nome.c` no **Portal** até a próxima aula pelo representante do grupo.
 - O programa deve compilar e rodar corretamente.
 - Comente seu código para facilitar a leitura.
+- Esta atividade valerá como Checkpoint 2.
 
 ---
 
