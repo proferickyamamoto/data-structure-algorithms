@@ -23,7 +23,7 @@ void dobrar(int x) {
 int main() {
     int num = 10;
     dobrar(num);
-    printf("%d\n", num); // Saída: 10
+    printf("%d\n", num); 
 }
 ```
 
@@ -36,7 +36,7 @@ void dobrar(int *x) {
 int main() {
     int num = 10;
     dobrar(&num);
-    printf("%d\n", num); // Saída: 20
+    printf("%d\n", num); 
 }
 ```
 
