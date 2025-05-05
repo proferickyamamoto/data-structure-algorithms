@@ -124,28 +124,61 @@ vetor = realloc(vetor, 10 * sizeof(int));
 free(vetor);
 ```
 
-### 📌 Exemplo completo
+### 📌 Exemplo completo com `malloc`, `calloc`, `realloc` e `free`
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
     int n;
-    printf("Digite o tamanho do vetor: ");
+    printf("Digite o tamanho inicial do vetor: ");
     scanf("%d", &n);
 
+    // Alocação com malloc
     int *vetor = malloc(n * sizeof(int));
-
     if (vetor == NULL) {
-        printf("Erro de alocação!\n");
+        printf("Erro ao alocar memória com malloc.\n");
         return 1;
     }
-
     for (int i = 0; i < n; i++) {
-        vetor[i] = i * 2;
+        vetor[i] = i + 1;
+    }
+    printf("\nValores com malloc: ");
+    for (int i = 0; i < n; i++) {
         printf("%d ", vetor[i]);
     }
 
+    // Libera e realoca com calloc
+    free(vetor);
+    vetor = calloc(n, sizeof(int));
+    if (vetor == NULL) {
+        printf("Erro ao alocar memória com calloc.\n");
+        return 1;
+    }
+    printf("\n\nValores com calloc (inicializados com zero): ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", vetor[i]);
+    }
+
+    // Realocando com realloc
+    int novo_tamanho;
+    printf("\n\nDigite o novo tamanho do vetor: ");
+    scanf("%d", &novo_tamanho);
+
+    vetor = realloc(vetor, novo_tamanho * sizeof(int));
+    if (vetor == NULL) {
+        printf("Erro ao realocar memória.\n");
+        return 1;
+    }
+    for (int i = n; i < novo_tamanho; i++) {
+        vetor[i] = i + 1; // adiciona novos valores
+    }
+    printf("\n\nValores após realloc: ");
+    for (int i = 0; i < novo_tamanho; i++) {
+        printf("%d ", vetor[i]);
+    }
+
+    // Liberação final da memória
     free(vetor);
     return 0;
 }
