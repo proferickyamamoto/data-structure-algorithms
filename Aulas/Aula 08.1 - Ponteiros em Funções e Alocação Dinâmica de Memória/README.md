@@ -87,6 +87,42 @@ int *vetor2 = calloc(n, sizeof(int));    // aloca e zera
 vetor = realloc(vetor, novo_tamanho);    // realoca
 free(vetor);                             // libera
 ```
+### 📘 Explicação Detalhada das Funções
+
+#### `malloc(size)` – *Memory Allocation*
+- Aloca um bloco de memória com o número de bytes especificado.
+- Retorna um ponteiro para o início da memória alocada.
+- O conteúdo da memória alocada **não é inicializado** (valores aleatórios).
+
+```c
+int *vetor = malloc(5 * sizeof(int));
+```
+
+#### `calloc(n, size)` – *Contiguous Allocation*
+- Aloca memória para um vetor de `n` elementos, cada um com `size` bytes.
+- Inicializa todos os bytes com zero.
+- Retorna um ponteiro para a área de memória alocada.
+
+```c
+int *vetor = calloc(5, sizeof(int));
+```
+
+#### `realloc(ptr, new_size)` – *Reallocation*
+- Redimensiona um bloco de memória previamente alocado com `malloc` ou `calloc`.
+- Preserva os dados existentes (até o menor tamanho entre o antigo e o novo).
+- Pode mover a memória para outro endereço (retorna novo ponteiro).
+
+```c
+vetor = realloc(vetor, 10 * sizeof(int));
+```
+
+#### `free(ptr)` – *Libera Memória*
+- Libera a memória previamente alocada.
+- Após o uso, deve-se liberar a memória com `free()` para evitar **vazamentos de memória**.
+
+```c
+free(vetor);
+```
 
 ### 📌 Exemplo completo
 ```c
@@ -114,6 +150,12 @@ int main() {
     return 0;
 }
 ```
+Esse trecho ocorre quando o `malloc` falha em alocar a memória requisitada. Isso pode acontecer, por exemplo:
+- Quando o sistema está com pouca memória RAM disponível;
+- Quando é solicitada uma quantidade muito grande de memória;
+- Quando há fragmentação da memória heap.
+
+Em ambientes com restrições de alocação (como sistemas embarcados). O teste if (vetor == NULL) é uma boa prática de segurança para evitar que o programa continue usando um ponteiro inválido, o que poderia causar falhas graves, como segmentation faults.
 
 ---
 
@@ -172,4 +214,3 @@ Crie um programa que:
 ## 🔥 Próxima Aula: Structs em C – Introdução a tipos personalizados
 
 **💬 Dúvidas? Comente no repositório ou fale com o professor ou monitor!**
-
