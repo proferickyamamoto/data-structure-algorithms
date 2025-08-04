@@ -1,4 +1,4 @@
-# 🧑‍🏫 Semana 01.2: Structs com Vetores e Ponteiros
+# 🧑‍🏫 Semana 01.2: Structs com Vetores e Ponteiros (Revisão)
 
 ## 🎯 Objetivos da Semana
 
