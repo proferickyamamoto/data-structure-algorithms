@@ -260,7 +260,6 @@ Crie um programa que:
 
 ## 📚 Referências
 
-* [https://en.wikipedia.org/wiki/Struct\_%28C\_programming\_language%29](https://en.wikipedia.org/wiki/Struct_%28C_programming_language%29)
 * [https://www.geeksforgeeks.org/c/c-array-of-structure/](https://www.geeksforgeeks.org/c/c-array-of-structure/)
 * [https://www.programiz.com/c-programming/c-structures-pointers](https://www.programiz.com/c-programming/c-structures-pointers)
 * [https://www.geeksforgeeks.org/c/how-to-create-dynamic-array-of-structs-in-c/](https://www.geeksforgeeks.org/c/how-to-create-dynamic-array-of-structs-in-c/)
