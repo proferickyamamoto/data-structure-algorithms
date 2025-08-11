@@ -11,7 +11,7 @@
 
 ---
 
-## 📚 Fundamentação Teórica (5+ parágrafos)
+## 📚 Fundamentação Teórica
 
 1. **Por que ordenar?** Em sistemas com cadastros (alunos, clientes, produtos), ordenar os registros melhora a leitura humana (relatórios) e viabiliza algoritmos de busca mais rápidos, como a **busca binária**. Em geral, mantemos dados ordenados por uma chave (ex.: RM, nome, média) para responder perguntas com eficiência.
 
@@ -41,7 +41,7 @@ Repare que **duplicar n** tende a **quadruplicar** o trabalho (`(2n)² = 4n²`).
 
 ---
 
-## 🧩 Exemplo completo (com explicação por partes)
+## 🧩 Exemplo completo
 
 > Vamos ordenar um vetor de alunos por **média (decrescente)** com **Bubble**, por **nome (crescente)** com **Insertion** e por **RM (crescente)** com **`qsort`**. Em seguida, faremos **busca binária** por RM.
 
