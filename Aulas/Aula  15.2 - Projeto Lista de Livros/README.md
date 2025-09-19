@@ -173,7 +173,7 @@ void liberar(Lista *L) {
 
 ---
 
-## 💻 Programa completo (pronto para Replit)
+## 💻 Programa completo - Coloque dentro do Replit ou outra IDE
 
 > Cole tudo em um `main.c` e rode. Menu simples com `do..while`.
 
@@ -345,7 +345,7 @@ int main(void) {
 
 ---
 
-## 🧪 Atividade em sala (guiada)
+## 🧪 Atividade em sala
 
 1. **Implemente** o código até o PASSO 4; cadastre 2 livros e liste.
 2. Adicione o **buscar por ID** (PASSO 5) e **remover** (PASSO 6), teste removendo um ID inexistente e um existente.
