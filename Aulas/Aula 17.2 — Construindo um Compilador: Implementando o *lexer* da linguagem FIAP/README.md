@@ -68,8 +68,13 @@ fiap/
 | `Makefile`            | Regras de compilação e limpeza                                                 |
 
 ---
+## Estruturação do Compilador
 
-## 🧩 Explicação detalhada do código (lexer + main)
+<img width="1500" height="750" alt="image" src="https://github.com/user-attachments/assets/bf5bccac-9f4b-403b-a7bc-d76c45129187" />
+
+---
+
+## Explicação detalhada do código (lexer + main)
 
 A seguir, os trechos de código com comentários explicativos bloco a bloco, para melhor explicar cada bloco do código.
 
