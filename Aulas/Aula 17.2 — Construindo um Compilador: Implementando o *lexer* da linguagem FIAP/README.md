@@ -71,7 +71,7 @@ fiap/
 
 ## 🧩 Explicação detalhada do código (lexer + main)
 
-A seguir, os trechos de código com comentários explicativos bloco a bloco. Os alunos devem acompanhar cada linha durante a aula.
+A seguir, os trechos de código com comentários explicativos bloco a bloco, para melhor explicar cada bloco do código.
 
 ### lexer.c
 
