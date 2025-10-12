@@ -9,7 +9,7 @@ Nesta aula, vamos desenvolver o primeiro módulo: o **analisador léxico (lexer)
 
 Ao final desta aula, os alunos deverão:
 
-1. Explicar o papel do *lexer* no pipeline da FIAP++.  
+1. Explicar o papel do *lexer* no pipeline da FIAP.  
 2. Implementar funções básicas em C: leitura, avanço, lookahead, emissão de tokens.  
 3. Reconhecer identificadores, números, operadores simples e compostos, delimitadores e palavras-chave.  
 4. Tratar espaços em branco, quebras de linha e comentários (`// …`).  
