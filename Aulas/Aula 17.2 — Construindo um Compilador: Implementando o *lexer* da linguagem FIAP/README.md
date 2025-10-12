@@ -1,106 +1,53 @@
-# Aula 17.2 — Projeto Compilador FIAP: Implementando o *lexer* da linguagem FIAP
-
-Este repositório é a base do compilador/linguagem **FIAP**, em homenagem à FIAP.  
-Nesta aula, vamos desenvolver o primeiro módulo: o **analisador léxico (lexer)**.
+Aqui vai uma versão ainda mais **detalhada e robusta** do **README.md** para a Aula 1 (lexer da FIAP++), com seções bem organizadas, explicações amplas, exemplos, instruções passo a passo e comentários. Fique à vontade para ajustar conforme o estilo da sua turma.
 
 ---
 
-## 🎯 Objetivos de Aprendizado
+```md
+# Linguagem FIAP — Aula 17.2: Implementando o Lexer
 
-Ao final desta aula, os alunos deverão:
-
-1. Explicar o papel do *lexer* no pipeline da FIAP.  
-2. Implementar funções básicas em C: leitura, avanço, lookahead, emissão de tokens.  
-3. Reconhecer identificadores, números, operadores simples e compostos, delimitadores e palavras-chave.  
-4. Tratar espaços em branco, quebras de linha e comentários (`// …`).  
-5. Rastrear linha e coluna para cada token.  
-6. Detectar caracteres inválidos com mensagens claras.  
-7. Testar com exemplos `.fiap` e conferir a saída de tokens.
+Este repositório contém o código-base e instruções para a **primeira aula** do compilador/linguagem FIAP (em homenagem à FIAP).  
+O foco é construir o módulo de **análise léxica (lexer)** em linguagem C, explicando cada trecho do código para facilitar o entendimento dos alunos.
 
 ---
 
-## 🧠 Contexto Teórico
+## 📖 Visão geral
 
-### Pipeline do compilador FIAP++
+### O que é FIAP
 
-O compilador da linguagem FIAP++ seguirá etapas assim:
+FIAP é uma linguagem didática desenvolvida para o curso de compiladores. A extensão de código-fonte será `.fiap`.  
+Ao longo das aulas, vamos construir do zero: **lexer → parser → AST → geração de código (bytecode) → VM**.
 
-```
+### Por que começar pelo lexer?
 
-Código-fonte (.fiap) → [ LEXER ] → Tokens → [ PARSER ] → AST → [ CODEGEN ] → Bytecode → [ VM ] → Execução
-
-```
-
-Hoje faremos apenas o módulo **lexer**, que transforma caracteres em tokens com significado.
-
-### Token
-
-Um **token** representa um trecho significativo do código. Cada token inclui:
-
-- **Tipo** (um `enum`, por exemplo `T_IDENT`, `T_NUMBER`, `T_LET`)  
-- **Lexema** (texto original ou parte dele)  
-- **Linha** e **coluna** de origem  
-- **Valor numérico**, no caso de tokens do tipo número
-
-Por exemplo:
-
-```
-
-let x = 10;
-
-```
-
-→ tokens: `T_LET("let")`, `T_IDENT("x")`, `T_ASSIGN("=")`, `T_NUMBER(10)`, `T_SEMI(";")`
-
-### Palavras-chave vs identificadores
-
-Identificadores seguem padrão `[A-Za-z_][A-Za-z0-9_]*`. Se o lexema coincide com uma palavra reservada (`let`, `print`, `if`, `else`, `while`), o token emitido é da palavra-chave específica, não `T_IDENT`.
-
-### Operadores simples e compostos
-
-Símbolos simples: `+ - * / % ( ) { } ;`  
-Operadores compostos com lookahead:
-
-- `=` → `==` ou `=`  
-- `!` → `!=` ou `!`  
-- `<` → `<=` ou `<`  
-- `>` → `>=` ou `>`  
-- `&` → `&&`  
-- `|` → `||`
-
-Usamos função auxiliar `match()` que verifica o próximo caractere.
-
-### Espaços e comentários
-
-- Ignorar espaços brancos via `isspace()`.  
-- Comentários `// …` devem ser pulados até o fim da linha.  
-- Muito importante manter `line` e `col` atualizados corretamente.
-
-### Linha e coluna
-
-- Ao consumir um caractere com `\n`, incrementar `line` e resetar `col = 1`.  
-- Para outros caracteres, apenas `col++`.  
-- Ao criar o token, podemos usar a posição **inicial** ou **final** — escolha consistente é importante para mensagens de erro.
-
-### Erros léxicos
-
-Se um caractere não for reconhecível como início de token válido, emitir mensagem como:
-
-```
-
-[lex] caractere inválido ‘@’ em linha 3, coluna 7
-
-```
-
-Pode-se optar por abortar ou continuar ignorando o caractere.
+- O lexer é a porta de entrada do compilador: converte texto bruto em tokens com significado (números, identificadores, operadores etc.).  
+- Permite aos alunos entenderem conceitos fundamentais de manipulação de strings, estados e lógica.  
+- É relativamente independente — erros em lexer não “derrubam” todo o compilador.
 
 ---
 
-## 🧱 Estrutura de Arquivos
+## 🎯 Objetivos desta aula
+
+Ao final desta aula, os alunos deverão ser capazes de:
+
+1. Explicar o papel do lexer no pipeline de compilação.  
+2. Implementar funções básicas: `peek`, `advance`, `match`, `skip_spaces`, `lexer_next`.  
+3. Reconhecer:
+   - identificadores e palavras-chave  
+   - números inteiros  
+   - operadores simples e compostos (`+`, `-`, `==`, `<=`, `&&` etc.)  
+   - delimitadores (`(`, `)`, `{`, `}`, `;`)  
+4. Lidar com espaços, quebras de linha e comentários `// …`.  
+5. Rastrear linha e coluna para cada token ou erro.  
+6. Gerar mensagens de erro léxico com posição.  
+7. Compilar e executar no terminal arquivos `.fiap` para visualizar tokens.
+
+---
+
+## 🗺 Estrutura do repositório e arquivos
 
 ```
 
-fiapp/
+fiap/
 ├── include/
 │   ├ token.h
 │   └ lexer.h
@@ -116,103 +63,50 @@ fiapp/
 
 ````
 
-- `token.h`: define `TokenType`, `Token`, função `token_name()`.  
-- `lexer.h`: define `lexer_init()` e `lexer_next()`.  
-- `lexer.c`: contém a implementação do lexer: funções auxiliares, `skip_spaces`, `lexer_next`.  
-- `main.c`: utilitário para leitura de arquivo `.fiap` e impressão de tokens.  
-- `Makefile`: regras de compilação.  
-- Pasta `tests/samples`: exemplos de entrada `.fiap`.
+| Pasta / arquivo       | Função principal                                                             |
+|-----------------------|-------------------------------------------------------------------------------|
+| `include/token.h`     | Define `TokenType`, estrutura `Token` e utilitário `token_name(...)`         |
+| `include/lexer.h`     | Declarações de `lexer_init()` e `lexer_next()`                                |
+| `src/lexer.c`         | Implementação do lexer (peek, advance, match, skip_spaces etc.)               |
+| `src/main.c`          | Aplicativo de teste que lê `.fiap`, percorre tokens e imprime no terminal     |
+| `tests/samples/*.fiap`| Arquivos de exemplo para testes (aritmética, controle, loop etc.)             |
+| `Makefile`            | Regras de compilação e limpeza                                                 |
 
 ---
 
-## 🛠️ Implementação Comentada
+## 🧩 Explicação detalhada do código (lexer + main)
 
-### 1. token.h
+A seguir, os trechos de código com comentários explicativos bloco a bloco. Os alunos devem acompanhar cada linha durante a aula.
+
+### lexer.c
 
 ```c
-#pragma once
-#include <stdint.h>
-
-typedef enum {
-  T_EOF = 0,
-  T_IDENT,
-  T_NUMBER,
-  T_LET, T_PRINT, T_IF, T_ELSE, T_WHILE,
-  T_LPAREN, T_RPAREN, T_LBRACE, T_RBRACE,
-  T_SEMI, T_ASSIGN,
-  T_PLUS, T_MINUS, T_STAR, T_SLASH, T_PERCENT,
-  T_EQ, T_NEQ, T_LT, T_LTE, T_GT, T_GTE,
-  T_AND, T_OR, T_NOT
-} TokenType;
-
-typedef struct {
-  TokenType type;
-  const char *lexeme;
-  int line, col;
-  long value;
-} Token;
-
-static inline const char* token_name(TokenType t) {
-  switch (t) {
-    case T_EOF: return "T_EOF";
-    case T_IDENT: return "T_IDENT";
-    case T_NUMBER: return "T_NUMBER";
-    case T_LET: return "T_LET";
-    case T_PRINT: return "T_PRINT";
-    case T_IF: return "T_IF";
-    case T_ELSE: return "T_ELSE";
-    case T_WHILE: return "T_WHILE";
-    case T_LPAREN: return "T_LPAREN";
-    case T_RPAREN: return "T_RPAREN";
-    case T_LBRACE: return "T_LBRACE";
-    case T_RBRACE: return "T_RBRACE";
-    case T_SEMI: return "T_SEMI";
-    case T_ASSIGN: return "T_ASSIGN";
-    case T_PLUS: return "T_PLUS";
-    case T_MINUS: return "T_MINUS";
-    case T_STAR: return "T_STAR";
-    case T_SLASH: return "T_SLASH";
-    case T_PERCENT: return "T_PERCENT";
-    case T_EQ: return "T_EQ";
-    case T_NEQ: return "T_NEQ";
-    case T_LT: return "T_LT";
-    case T_LTE: return "T_LTE";
-    case T_GT: return "T_GT";
-    case T_GTE: return "T_GTE";
-    case T_AND: return "T_AND";
-    case T_OR: return "T_OR";
-    case T_NOT: return "T_NOT";
-    default: return "T_UNKNOWN";
-  }
-}
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+#include "lexer.h"
 ````
 
-### 2. lexer.h
-
-```c
-#pragma once
-#include "token.h"
-
-typedef struct {
-  const char *src;
-  int pos;
-  int line, col;
-} Lexer;
-
-void lexer_init(Lexer *L, const char *src);
-Token lexer_next(Lexer *L);
-```
-
-### 3. Funções auxiliares em lexer.c
+* `stdio.h`: entrada/saída (printf, fprintf, perror).
+* `ctype.h`: funções de caracteres (isspace, isdigit, isalpha etc.).
+* `string.h`: manipulação de strings (memcpy, strcmp).
+* `stdlib.h`: alocação de memória (malloc, free), exit.
+* `lexer.h`: nosso cabeçalho com definições de `Lexer` e `Token`.
 
 ```c
 static int peek(Lexer *L) {
   return L->src[L->pos];
 }
+```
 
+* Retorna o caractere atual sem avançar `L->pos`.
+* Se `pos` apontar para `'\0'`, peek retorna `0` (fim da string).
+
+```c
 static int advance(Lexer *L) {
   int c = L->src[L->pos++];
-  if (c == '\\n') {
+  if (c == '\n') {
     L->line++;
     L->col = 1;
   } else {
@@ -220,7 +114,14 @@ static int advance(Lexer *L) {
   }
   return c;
 }
+```
 
+* Move `pos` para frente, consumindo o caractere.
+* Se for nova linha (`\n`), incrementa `line` e reinicia `col = 1`.
+* Caso contrário, incrementa `col`.
+* Retorna o caractere consumido.
+
+```c
 static int match(Lexer *L, char expected) {
   if (peek(L) == expected) {
     advance(L);
@@ -230,19 +131,42 @@ static int match(Lexer *L, char expected) {
 }
 ```
 
-### 4. skip_spaces
+* Verifica se o próximo caractere é `expected`.
+* Se sim, consome-o (`advance`) e retorna 1 (verdadeiro).
+* Caso contrário, não consome nada e retorna 0.
+
+```c
+static Token make(Lexer *L, TokenType t, const char *lex) {
+  Token tok = { t, lex, L->line, L->col, 0 };
+  return tok;
+}
+```
+
+* Cria um `Token` simples com tipo `t`, lexema `lex`, linha/coluna atuais, valor = 0.
+* Ideal para tokens fixos (operadores, símbolos simples).
+
+```c
+void lexer_init(Lexer *L, const char *src) {
+  L->src = src;
+  L->pos = 0;
+  L->line = 1;
+  L->col = 1;
+}
+```
+
+* Inicializa o lexer: aponta para a string `src`, zera `pos`, e inicia rastreamento de linha e coluna.
 
 ```c
 static void skip_spaces(Lexer *L) {
   for (;;) {
     int c = peek(L);
-    if (c == '\\0') break;
+    if (c == '\0') break;
     if (isspace(c)) {
       advance(L);
       continue;
     }
     if (c == '/' && L->src[L->pos + 1] == '/') {
-      while (peek(L) != '\\0' && peek(L) != '\\n') {
+      while (peek(L) != '\0' && peek(L) != '\n') {
         advance(L);
       }
       continue;
@@ -252,17 +176,24 @@ static void skip_spaces(Lexer *L) {
 }
 ```
 
-### 5. lexer_next
+* Ignora espaços, tabs, novas linhas via `isspace`.
+* Se detectar `//`, consome até encontrar `\n` ou fim da string.
+* Sai quando tiver um caractere relevante para tokenização.
 
 ```c
 Token lexer_next(Lexer *L) {
   skip_spaces(L);
   int c = peek(L);
-
-  if (c == '\\0') {
-    return (Token){ T_EOF, "", L->line, L->col, 0 };
+  if (c == '\0') {
+    return make(L, T_EOF, "");
   }
+```
 
+* Esta função é o coração do lexer: retorna o próximo token.
+* Primeiro, chama `skip_spaces`.
+* Se `peek` indica fim de arquivo (`'\0'`), retorna token `T_EOF`.
+
+```c
   if (isalpha(c) || c == '_') {
     int start = L->pos;
     while (isalnum(peek(L)) || peek(L) == '_') {
@@ -271,33 +202,29 @@ Token lexer_next(Lexer *L) {
     int len = L->pos - start;
     char *buf = malloc(len + 1);
     memcpy(buf, &L->src[start], len);
-    buf[len] = '\\0';
+    buf[len] = '\0';
+```
 
+* Reconhece identificador ou palavra-chave: começa por letra ou underscore `_`.
+* Consome enquanto for alfanumérico ou `_`.
+* Calcula comprimento, aloca buffer + terminador `\0`.
+* Copia trecho da fonte para `buf`.
+
+```c
     if (strcmp(buf, "let") == 0) {
       free(buf);
       return (Token){ T_LET, "let", L->line, L->col, 0 };
     }
-    if (strcmp(buf, "print") == 0) {
-      free(buf);
-      return (Token){ T_PRINT, "print", L->line, L->col, 0 };
-    }
-    if (strcmp(buf, "if") == 0) {
-      free(buf);
-      return (Token){ T_IF, "if", L->line, L->col, 0 };
-    }
-    if (strcmp(buf, "else") == 0) {
-      free(buf);
-      return (Token){ T_ELSE, "else", L->line, L->col, 0 };
-    }
-    if (strcmp(buf, "while") == 0) {
-      free(buf);
-      return (Token){ T_WHILE, "while", L->line, L->col, 0 };
-    }
-
+    // repita para print, if, else, while
     Token tk = (Token){ T_IDENT, buf, L->line, L->col, 0 };
     return tk;
   }
+```
 
+* Compara com palavras-chave: se coincidir, libera `buf` e retorna token fixo.
+* Caso contrário, retorna `T_IDENT` com `lexeme = buf`.
+
+```c
   if (isdigit(c)) {
     long v = 0;
     while (isdigit(peek(L))) {
@@ -305,7 +232,13 @@ Token lexer_next(Lexer *L) {
     }
     return (Token){ T_NUMBER, "", L->line, L->col, v };
   }
+```
 
+* Se o caractere for dígito, começa a leitura de número inteiro.
+* Acumula valor numérico `v`.
+* Retorna token `T_NUMBER` com `value = v`.
+
+```c
   advance(L);
   switch (c) {
     case '=':
@@ -337,14 +270,27 @@ Token lexer_next(Lexer *L) {
     case '}': return (Token){ T_RBRACE, "}", L->line, L->col, 0 };
     case ';': return (Token){ T_SEMI, ";", L->line, L->col, 0 };
   }
+```
 
-  fprintf(stderr, "[lex] caractere inválido '%c' em %d:%d\n",
+* Consome o caractere `c` e entra no `switch`.
+* Para casos como `=`, verifica se o próximo caractere forma `==` (via `match`).
+* Se sim, retorna token `T_EQ`; senão `T_ASSIGN`.
+* Para operadores simples, retorna token diretamente.
+
+```c
+  fprintf(stderr, "[lex] caractere inválido '%c' em %d:%d\\n",
           c, L->line, L->col);
   return (Token){ T_EOF, "", L->line, L->col, 0 };
 }
 ```
 
-### 6. main.c
+* Se nenhum `case` foi acionado, considera caractere inválido.
+* Imprime mensagem de erro com linha e coluna.
+* Retorna `T_EOF` para encerrar a leitura.
+
+````
+
+### main.c
 
 ```c
 #include <stdio.h>
@@ -352,7 +298,11 @@ Token lexer_next(Lexer *L) {
 #include <string.h>
 #include "lexer.h"
 #include "token.h"
+````
 
+* Inclusão de bibliotecas padrão e nossos headers.
+
+```c
 static char* read_file(const char *path) {
   FILE *f = fopen(path, "rb");
   if (!f) {
@@ -371,7 +321,17 @@ static char* read_file(const char *path) {
   fclose(f);
   return buf;
 }
+```
 
+* Lê o arquivo `.fiap` completo em memória.
+* `fopen("rb")`: abre em modo binário para ler bytes.
+* `fseek` + `ftell` para descobrir tamanho.
+* `malloc(n+1)` para alocar buffer com espaço extra para `\0`.
+* `fread` para ler conteúdo; se falhar, aborta.
+* `buf[n] = '\0'` forma string C.
+* Retorna ponteiro para buffer.
+
+```c
 int main(int argc, char **argv) {
   if (argc < 3 || strcmp(argv[1], "--tokens") != 0) {
     fprintf(stderr, "Uso: %s --tokens <arquivo.fiap>\\n", argv[0]);
@@ -380,6 +340,14 @@ int main(int argc, char **argv) {
   char *src = read_file(argv[2]);
   Lexer L;
   lexer_init(&L, src);
+```
+
+* Verifica se os argumentos estão corretos (`--tokens arquivo.fiap`).
+* Se não, imprime uso correto e termina.
+* Lê o conteúdo do arquivo para `src`.
+* Inicializa o lexer com esse buffer.
+
+```c
   while (1) {
     Token t = lexer_next(&L);
     if (t.type == T_EOF) {
@@ -395,74 +363,80 @@ int main(int argc, char **argv) {
       free((void*)t.lexeme);
     } else {
       printf("%s '%s' (l=%d c=%d)\\n",
-             token_name(t.type), t.lexeme ? t.lexeme : "",
+             token_name(t.type),
+             t.lexeme ? t.lexeme : "",
              t.line, t.col);
     }
   }
+```
+
+* Loop: chama `lexer_next()` repetidamente até `T_EOF`.
+* Se `T_NUMBER`, imprime número.
+* Se `T_IDENT`, imprime identificador e libera `lexeme`.
+* Para outros tokens, imprime tipo + lexema.
+* No final, sai do loop.
+
+```c
   free(src);
   return 0;
 }
 ```
 
-### 7. Makefile
-
-```makefile
-CC = gcc
-CFLAGS = -std=c11 -Wall -Wextra -O2 -Iinclude
-
-SRC = src/main.c src/lexer.c
-OBJ = $(SRC:.c=.o)
-
-fiappp: $(OBJ)
-    $(CC) $(CFLAGS) -o $@ $(OBJ)
-
-clean:
-    rm -f $(OBJ) fiappp
-```
+* Libera o buffer `src`.
+* Retorna 0 (sucesso).
 
 ---
 
-## 🧪 Exemplos de Teste
+## 🧪 Exemplos de arquivos `.fiap`
 
-Em `tests/samples`:
+* **arith.fiap**
 
-**arith.fiap**
+  ```fiap
+  let a = 1 + 2 * 3;
+  print a;
+  ```
+* **cond.fiap**
 
-```c
-let a = 1 + 2 * 3;
-print a;
-```
+  ```fiap
+  let a = 3;
+  if (a == 3) { print 42; } else { print 0; }
+  ```
+* **loops.fiap**
 
-**cond.fiap**
+  ```fiap
+  let x = 5;
+  while (x > 0) { print x; x = x - 1; }
+  ```
 
-```c
-let a = 3;
-if (a == 3) { print 42; } else { print 0; }
-```
-
-**loops.fiap**
-
-```c
-let x = 5;
-while (x > 0) { print x; x = x - 1; }
-```
-
-Comando de teste:
+Teste no terminal:
 
 ```bash
 ./fiappp --tokens tests/samples/arith.fiap
 ```
 
-E também um teste com erro proposital, por exemplo:
+Exemplo de saída esperada:
 
-```c
-let 123 = x;
+```
+T_LET 'let' (l=1 c=1)
+T_IDENT 'a' (l=1 c=5)
+T_ASSIGN '=' (l=1 c=7)
+T_NUMBER 1 (l=1 c=9)
+…
+T_EOF (l=1 c=…)
+```
+
+Se um caractere inválido aparece:
+
+```
+[lex] caractere inválido '@' em 2:5
 ```
 
 ---
 
-## ⚠️ Dúvidas Extras sobre `#pragma once`
+## ✅ Dicas úteis!
 
-`#pragma once` é uma diretiva de pré-processador (não-padrão) que instrui que aquele header seja incluído apenas uma vez por unidade de tradução, evitando duplicações de definição.
-Equivalente ao uso de *include guards* (`#ifndef / #define / #endif`), mas com sintaxe mais limpa.
-Embora não esteja formalmente no padrão C, é amplamente suportado pelos compiladores modernos.
+* Se `malloc` for usado para `lexeme`, sempre faça `free` depois.
+* A função `match()` permite “ler um caractere à frente” somente quando necessário.
+* Erros léxicos não devem travar a aula — trate-os com gentileza para mostrar ao aluno como pensar em recuperação.
+* Leve um ou dois exemplos com erro proposital para testar tratamento de erro.
+* Faça revisões em pares (“pair programming”) para que um aluno explique ao outro o que cada função faz.
