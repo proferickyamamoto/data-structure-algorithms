@@ -1,8 +1,3 @@
-Aqui vai uma versão ainda mais **detalhada e robusta** do **README.md** para a Aula 1 (lexer da FIAP++), com seções bem organizadas, explicações amplas, exemplos, instruções passo a passo e comentários. Fique à vontade para ajustar conforme o estilo da sua turma.
-
----
-
-```md
 # Linguagem FIAP — Aula 17.2: Implementando o Lexer
 
 Este repositório contém o código-base e instruções para a **primeira aula** do compilador/linguagem FIAP (em homenagem à FIAP).  
