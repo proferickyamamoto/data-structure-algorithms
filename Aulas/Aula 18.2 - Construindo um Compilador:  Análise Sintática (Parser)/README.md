@@ -224,10 +224,6 @@ int main(int argc, char **argv) {
 * Tutorialspoint — “What is Recursive Descent Parser?”: conceito e exemplo. ([Tutorials Point][2])
 * GeeksforGeeks — “Recursive Descent Parser”: explicações passo-a-passo. ([GeeksforGeeks][3])
 
-```
-::contentReference[oaicite:4]{index=4}
-```
-
 [1]: https://en.wikipedia.org/wiki/Recursive_descent_parser?utm_source=chatgpt.com "Recursive descent parser - Wikipedia"
 [2]: https://www.tutorialspoint.com/what-is-recursive-descent-parser?utm_source=chatgpt.com "What is Recursive Descent Parser? - Tutorialspoint"
 [3]: https://www.geeksforgeeks.org/recursive-descent-parser/?utm_source=chatgpt.com "Recursive Descent Parser - GeeksforGeeks"
