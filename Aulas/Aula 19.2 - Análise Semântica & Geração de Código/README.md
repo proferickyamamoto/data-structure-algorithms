@@ -58,17 +58,22 @@ print x;
 #### semantic.h
 
 ```c
-#pragma once
-#include "token.h"
-#include "lexer.h"
+#pragma once        // garante que o header seja incluído apenas uma vez
+#include "token.h"  // precisamos dos tipos TokenType, Token, token_name
+#include "lexer.h"  // talvez precisemos da estrutura Lexer para integração
 
-// Inicializa tabela de símbolos
+// Inicializa a tabela de símbolos (variáveis, etc)
 void semantic_init();
-// Verifica declaração, uso, etc.
+
+// Verifica declaração de uma variável (nome, linha, coluna) — se já está declarada ou não
 void semantic_check_declaration(const char *name, int line, int col);
+
+// Verifica uso de uma variável (nome, linha, coluna) — se foi declarada antes do uso
 void semantic_check_usage(const char *name, int line, int col);
-// Ao terminar, libera recursos
+
+// Finaliza a análise semântica, libera recursos se necessário
 void semantic_finalize();
+
 ```
 
 #### semantic.c
@@ -79,22 +84,22 @@ void semantic_finalize();
 #include <string.h>
 #include "semantic.h"
 
-// Estrutura de símbolo (nome simples, tipo será int no nosso caso)
+// Estrutura para representar símbolo (variável) na tabela
 typedef struct Sym {
     char *name;
     struct Sym *next;
 } Sym;
 
-static Sym *sym_table = NULL;
+static Sym *sym_table = NULL;   // ponteiro para o início da lista de símbolos
 
 void semantic_init() {
-    sym_table = NULL;
+    sym_table = NULL;            // inicia com tabela vazia
 }
 
 static void sym_insert(const char *name) {
-    Sym *s = malloc(sizeof(Sym));
-    s->name = strdup(name);
-    s->next = sym_table;
+    Sym *s = malloc(sizeof(Sym));     // aloca novo símbolo
+    s->name = strdup(name);            // copia o nome
+    s->next = sym_table;               // insere no início da lista
     sym_table = s;
 }
 
@@ -121,7 +126,6 @@ void semantic_check_usage(const char *name, int line, int col) {
 }
 
 void semantic_finalize() {
-    // liberar memória
     Sym *s = sym_table;
     while (s) {
         Sym *next = s->next;
@@ -129,6 +133,7 @@ void semantic_finalize() {
         free(s);
         s = next;
     }
+    sym_table = NULL;
 }
 ```
 
@@ -139,10 +144,18 @@ void semantic_finalize() {
 #include "lexer.h"
 #include "token.h"
 
+// Inicializa geração de código
 void codegen_init();
+
+// Emite código (pseudo-assembly) para atribuição de variável nome = valor
 void codegen_emit_assignment(const char *name, long value);
+
+// Emite código para comando print de variável nome
 void codegen_emit_print(const char *name);
+
+// Finaliza geração de código
 void codegen_finalize();
+
 ```
 
 #### codegen.c
@@ -168,6 +181,7 @@ void codegen_emit_print(const char *name) {
 void codegen_finalize() {
     printf("; Fim do código gerado\n");
 }
+
 ```
 
 #### main.c (modificado para a nova fase)
@@ -182,6 +196,7 @@ void codegen_finalize() {
 #include "semantic.h"
 #include "codegen.h"
 
+// Função para ler todo o arquivo <path> de uma vez
 static char* read_file(const char *path) {
     FILE *f = fopen(path, "rb");
     if (!f) {
@@ -192,6 +207,10 @@ static char* read_file(const char *path) {
     long n = ftell(f);
     fseek(f, 0, SEEK_SET);
     char *buf = malloc(n + 1);
+    if (!buf) {
+        perror("malloc");
+        exit(1);
+    }
     if (fread(buf, 1, n, f) != (size_t)n) {
         perror("fread");
         exit(1);
@@ -206,19 +225,22 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Uso: %s --codegen <arquivo.fiap>\n", argv[0]);
         return 1;
     }
-    char *src = read_file(argv[2]);
+    char *src = read_file(argv[2]);           // lê arquivo-fonte
     Lexer L;
-    lexer_init(&L, src);
-    parser_init(&L);
-    semantic_init();
-    codegen_init();
-    parse_program(&L);  // aqui parser também invoca semântica e codegen em pontos-chave (versão simplificada)
-    codegen_finalize();
-    semantic_finalize();
+    lexer_init(&L, src);                       // inicializa lexer com o texto
+    parser_init(&L);                           // inicializa parser (gera primeiro token)
+    semantic_init();                           // inicia análise semântica
+    codegen_init();                            // inicia geração de código
+
+    parse_program(&L);                         // chama parser (que deverá chamar semântica + codegen nos momentos certos)
+    codegen_finalize();                        // finaliza geração de código
+    semantic_finalize();                       // finaliza a tabela de símbolos / libera memória
+
     printf("Geração de código concluída com sucesso.\n");
-    free(src);
+    free(src);                                 // libera buffer do arquivo
     return 0;
 }
+
 ```
 
 > Nota: Para simplificar, dentro de `parser.c` você pode invocar `semantic_check_declaration`, `semantic_check_usage`, `codegen_emit_assignment`, `codegen_emit_print` nos locais correspondentes às regras para declaração, atribuição e print.
