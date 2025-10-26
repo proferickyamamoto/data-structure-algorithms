@@ -271,18 +271,6 @@ PRINT_VAR y
 ; Fim do código gerado
 Geração de código concluída com sucesso.
 ```
-
----
-
-## 🗓 Cronograma da Aula (90 minutos)
-
-1. Revisão das fases anteriores — 10 min
-2. Teoria: análise semântica e papéis da tabela de símbolos/escopo — 15 min
-3. Implementação prática: tabela de símbolos + verificações semânticas — 20 min
-4. Geração de código simples: código-intermediário ou pseudo-assembly — 20 min
-5. Testes, correção de erros, discussão em sala — 15 min
-6. Encerramento, entregas finais e próximas perspectivas — 10 min
-
 ---
 
 ## 📚 Referências e leituras recomendadas
