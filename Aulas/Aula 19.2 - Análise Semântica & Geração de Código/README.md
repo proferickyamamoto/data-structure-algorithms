@@ -23,7 +23,7 @@ Ao final desta aula, os alunos deverão ser capazes de:
 
 ### O que é análise semântica?
 
-A análise semântica ocorre **após** a análise sintática (parsing) e verifica aspectos que não podem ser totalmente capturados por gramáticas livres de contexto — como “uma variável foi declarada antes de uso” ou “tipo de dado compatível com operação”. :contentReference[oaicite:1]{index=1}  
+A análise semântica ocorre **após** a análise sintática (parsing) e verifica aspectos que não podem ser totalmente capturados por gramáticas livres de contexto — como “uma variável foi declarada antes de uso” ou “tipo de dado compatível com operação”. 
 Por exemplo:  
 - Verificar se um identificador está declarado.  
 - Verificar compatibilidade de tipo em atribuições.  
@@ -38,7 +38,7 @@ Porque muitos erros não são visíveis no nível de sintaxe — por exemplo:
 print x;
 ````
 
-é lexicamente e sintaticamente válido (identificador, ponto-e-vírgula), mas *x* nunca foi declarado — esse erro é semântico. ([Wikipédia][1])
+é lexicamente e sintaticamente válido (identificador, ponto-e-vírgula), mas *x* nunca foi declarado — esse erro é semântico. 
 
 ---
 
@@ -301,7 +301,6 @@ Geração de código concluída com sucesso.
 * “Compiler Design – Semantic Analysis” – Tutorialspoint. ([tutorialspoint.com][3])
 * “Lecture 8 – Semantic Analysis” (Robert Siegfried) – pdf. ([home.adelphi.edu][4])
 
-[1]: https://en.wikipedia.org/wiki/Semantic_analysis_%28compilers%29?utm_source=chatgpt.com "Semantic analysis (compilers)"
-[2]: https://www.geeksforgeeks.org/compiler-design/semantic-analysis-in-compiler-design/?utm_source=chatgpt.com "Semantic Analysis in Compiler Design - GeeksforGeeks"
-[3]: https://www.tutorialspoint.com/compiler_design/compiler_design_semantic_analysis.htm?utm_source=chatgpt.com "Semantic Analysis in Compiler Design - Tutorialspoint"
-[4]: https://home.adelphi.edu/~siegfried/cs372/372l8.pdf?utm_source=chatgpt.com "[PDF] Compiler Construction - Lecture 8 – Semantic Analysis"
+[1]: https://www.geeksforgeeks.org/compiler-design/semantic-analysis-in-compiler-design/?utm_source=chatgpt.com "Semantic Analysis in Compiler Design - GeeksforGeeks"
+[2]: https://www.tutorialspoint.com/compiler_design/compiler_design_semantic_analysis.htm?utm_source=chatgpt.com "Semantic Analysis in Compiler Design - Tutorialspoint"
+[3]: https://home.adelphi.edu/~siegfried/cs372/372l8.pdf?utm_source=chatgpt.com "[PDF] Compiler Construction - Lecture 8 – Semantic Analysis"
